@@ -30,12 +30,16 @@ if st.button("🚀 콘텐츠 마법 시작!"):
         st.success("✅ 글 작성이 완료되었습니다! 아래는 미리보기예요.")
         st.markdown(content, unsafe_allow_html=True)
         
-        # 워드프레스로 배달하기
-        if st.button("📦 이 글을 워드프레스로 배달하기"):
-            auth = (WP_USER, WP_APP_PW)
-            payload = {"title": command, "content": content, "status": "draft"}
-            res = requests.post(WP_URL, auth=auth, json=payload)
-            
-            if res.status_code == 201:
-                st.balloons() # 풍선 팡팡!
-                st.success("주인님! 워드프레스 임시저장함에 배달 완료했어요! 💌")
+      # 수정된 배달 코드 부분
+if st.button("📦 이 글을 워드프레스로 배달하기"):
+    auth = (WP_USER, WP_APP_PW)
+    payload = {"title": command, "content": content, "status": "draft"}
+    res = requests.post(WP_URL, auth=auth, json=payload)
+    
+    if res.status_code == 201:
+        st.balloons()
+        st.success("배달 성공!")
+    else:
+        # 배달 실패시 이유를 화면에 보여줌
+        st.error(f"배달 실패! 에러 코드: {res.status_code}")
+        st.write(res.text) # 왜 안됐는지 이유를 알려줍니다.
