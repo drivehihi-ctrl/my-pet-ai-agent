@@ -15,7 +15,7 @@ WP_APP_PW = st.secrets["WP_APP_PW"]
 
 # Gemini 로봇 연결
 genai.configure(api_key=GEMINI_API_KEY)
-model = genai.GenerativeModel('gemini-1.5-flash')
+model = genai.GenerativeModel('gemini-1.5-flash-latest')
 
 # 3. 명령 내리기
 command = st.text_input("여기에 명령을 적어주세요", placeholder="예: 인기 있는 강아지 품종 5개 추천해줘")
