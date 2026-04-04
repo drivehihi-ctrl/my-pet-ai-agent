@@ -13,7 +13,7 @@ WP_URL = st.secrets["WP_URL"]
 WP_USER = st.secrets["WP_USER"]
 WP_APP_PW = st.secrets["WP_APP_PW"]
 
-# [고정] gemini-flash-latest 모델만 사용
+# [고정] gemini-flash-latest 모델 사용
 genai.configure(api_key=GEMINI_API_KEY)
 model = genai.GenerativeModel('gemini-flash-latest')
 
@@ -25,14 +25,14 @@ if "image_prompts" not in st.session_state:
 if "classified_title" not in st.session_state:
     st.session_state.classified_title = ""
 
-# 4. 명령 내리기
-command = st.text_input("주제 입력", placeholder="예: 고양이 양치질 단계별 가이드 (이미지 6장)")
+# 4. 명령 내리기 (UI 업그레이드)
+command = st.text_input("주제 입력", placeholder="예: 강아지 슬개골 탈구 자가진단법")
+
+# [주인님 제안 반영] 이미지 개수를 선택하는 슬라이더 추가
+img_count = st.slider("삽입할 이미지 개수를 선택하세요", min_value=1, max_value=10, value=4)
 
 if st.button("🚀 콘텐츠 & 이미지 프롬프트 제작!"):
-    with st.spinner("이미지 개수를 파악하여 글을 작성 중입니다..."):
-        # 입력값에서 숫자(이미지 개수)를 찾아내는 스마트 엔진
-        count_match = re.search(r'이미지\s*(\d+)장', command)
-        img_count = count_match.group(1) if count_match else "4" # 기본값 4장
+    with st.spinner(f"이미지 {img_count}장을 배치하며 글을 작성 중입니다..."):
         
         full_prompt = f"""
         너는 반려동물 전문 블로거이자 전문 사진작가야. 
@@ -77,7 +77,7 @@ if st.button("🚀 콘텐츠 & 이미지 프롬프트 제작!"):
             st.session_state.generated_content = full_text
             st.session_state.image_prompts = ["제작 중 오류 발생"]
 
-        st.success(f"✅ {img_count}장의 이미지 설계가 포함된 콘텐츠 제작 완료!")
+        st.success(f"✅ 이미지 {img_count}장이 포함된 고품질 콘텐츠 제작 완료!")
 
 # 5. 결과 화면 보여주기
 if st.session_state.generated_content:
@@ -104,6 +104,6 @@ if st.session_state.generated_content:
         
         if res.status_code == 201:
             st.balloons()
-            st.success("주인님! 원고가 워드프레스 창고에 도착했습니다! 💌")
+            st.success("주인님! 원고가 워드프레스 창고에 안전하게 도착했습니다! 💌")
         else:
             st.error(f"배달 실패! (에러 코드: {res.status_code})")
