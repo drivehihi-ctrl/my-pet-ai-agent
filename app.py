@@ -13,7 +13,7 @@ WP_USER = st.secrets["WP_USER"]
 WP_APP_PW = st.secrets["WP_APP_PW"]
 
 genai.configure(api_key=GEMINI_API_KEY)
-model = genai.GenerativeModel('gemini-2.0-flash')
+model = genai.GenerativeModel('gemini-flash-latest')
 
 # 3. 비서가 글을 기억하게 하는 장치 (중요!)
 if "generated_content" not in st.session_state:
