@@ -64,7 +64,7 @@ if st.button("🚀 안심이에게 콘텐츠 제작 요청!"):
 
         [과업 3: 안심이 출연 실사 이미지 설계]
         - 모든 이미지는 안심이(Dachshund researcher)가 주인공으로 등장해야 함.
-        - 시각적 고정값: "A brown long-haired Dachshund wearing round horn-rimmed glasses, holding a small golden magnifying glass, wearing a white lab coat."
+        - 시각적 고정값: "A brown Dachshund wearing round horn-rimmed glasses, holding a small golden magnifying glass, wearing a white lab coat."
         - 각 프롬프트는 위 고정값에 주제와 관련된 상황을 더해 'Hyper-realistic 3D render style' 영문으로 작성해.
         - 예: 돋보기로 사료 알갱이를 관찰하는 모습, 칠판 앞에서 그래프를 가리키는 모습 등.
         
