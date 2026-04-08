@@ -65,8 +65,10 @@ if st.button("🚀 안심이에게 콘텐츠 제작 요청!"):
         [공감]
         안심이의 따뜻한 공감 한마디(F형 스타일)
 
-        [과업 4: 이미지 프롬프트 및 태그]
-        - 이미지 프롬프트는 영문 실사 스타일로 작성해.
+        [과업 4: 안심이 출연 실사 이미지 설계]
+        - 모든 이미지는 안심이(Dachshund researcher)가 주인공으로 등장해야 함.
+        - 시각적 고정값: "A brown Dachshund wearing round horn-rimmed glasses, holding a small golden magnifying glass, wearing a white lab coat."
+        - 각 프롬프트는 위 고정값에 주제와 관련된 상황을 더해 'Hyper-realistic 3D render style' 영문으로 작성해.
         - 이 글에 어울리는 SEO 최적화 태그 5개를 콤마(,)로 구분해서 추출해줘.
 
         결과 형식 (구분자를 반드시 지킬 것):
@@ -116,7 +118,7 @@ if st.session_state.generated_content:
     if st.button("📦 이 연구 보고서를 워드프레스 창고로 보내기"):
         auth = (WP_USER, WP_APP_PW)
         
-        # 1. 본문 내 [이미지 n]을 텍스트 기반 프롬프트로 치환 (분홍 박스 제거)
+        # 1. 본문 내 [이미지 n]을 텍스트 기반 프롬프트로 치환
         final_body = st.session_state.generated_content
         for i, prompt in enumerate(st.session_state.image_prompts, 1):
             prompt_text = f"\n\n(📸 안심 연구원의 촬영 가이드 {i}: {prompt})\n\n"
@@ -146,6 +148,3 @@ if st.session_state.generated_content:
         
         if res.status_code == 201:
             st.balloons()
-            st.success("주인님! 카테고리 선정부터 요약, [공감]까지 모두 담아 전송했습니다! 오늘도 안심하세요! 💌🐾")
-        else:
-            st.error(f"배달 실패! 에러 코드: {res.status_code}")
