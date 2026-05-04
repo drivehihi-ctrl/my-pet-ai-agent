@@ -71,7 +71,7 @@ if st.button("🚀 안심이에게 콘텐츠 제작 요청!"):
         - 모든 이미지는 안심이(Dachshund researcher)가 주인공으로 등장해야 함.
         - 시각적 고정값: "A brown Dachshund wearing round horn-rimmed glasses, holding a small golden magnifying glass, wearing a white lab coat."
         - 각 프롬프트는 위 고정값에 주제와 관련된 상황을 더해 'Hyper-realistic 3D render style' 영문으로 작성해.
-        - 이 글에 어울리는 SEO 최적화 태그 5개를 콤마(,)로 구분해서 추출해줘.
+        - 이 글에 어울리는 SEO 최적화 태그 8개를 콤마(,)로 구분해서 추출해줘.
             """
         # 카드뉴스 모드일 때
         else:
